@@ -5,8 +5,7 @@ var path = require('path');
 var application_root = __dirname;
 
 //TODO: externalize db config
-//mongoose.connect('mongodb://localhost/mealman_database');
-
+mongoose.connect('mongodb://localhost/mealman_database');
 
 
 app.configure(function(){
@@ -21,6 +20,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 //DB Schema Creation
 //TODO: consider relocating to another file
+
 var Schema = mongoose.Schema;  
 
 var UserSchema =  new Schema({  
@@ -46,13 +46,11 @@ var MealPlanSchema = new Schema({
 });
 
 //Mongoose Model Initialization
-//TODO: uncomment once we have dev db
-/*
-var UserModel = mongoose.Model('User',UserSchema);
-var IngredientModel = mongoose.Model('Ingredient',IngredientSchema);
-var RecipeModel = mongoose.Model('Recipe',RecipeSchema);
-var MealPlanModel = mongoose.Model('MealPlan',MealPlanSchema)
-*/
+var UserModel = mongoose.model('User',UserSchema);
+var IngredientModel = mongoose.model('Ingredient',IngredientSchema);
+var RecipeModel = mongoose.model('Recipe',RecipeSchema);
+var MealPlanModel = mongoose.model('MealPlan',MealPlanSchema)
+
 
 //API Routes
 app.get('/api/status', function(req, res){
@@ -76,10 +74,9 @@ app.post('/api/ingredients', function (req, res){
   console.log(req.body);
   var ingredient = new IngredientModel({
     name: req.body.name,
-    measureType: req.body.measureType    
-    //TODO: generate ID
+    measureType: req.body.measureType        
   });
-  product.save(function (err) {
+  ingredient.save(function (err) {
     if (!err) {
       return console.log("created");
     } else {
@@ -89,8 +86,43 @@ app.post('/api/ingredients', function (req, res){
   return res.send(ingredient);
 });
 
+app.get('/api/ingredients/:id', function (req, res){
+  return IngredientModel.findById(req.params.id, function (err, ingredient) {
+    if (!err) {
+      return res.send(ingredient);
+    } else {
+      return console.log(err);
+    }
+  });
+});
 
+app.put('/api/ingredients/:id', function (req, res){
+  return IngredientModel.findById(req.params.id, function (err, ingredient) {
+    name: req.body.name;
+    measureType: req.body.measureType;
+    return ingredient.save(function (err) {
+      if (!err) {
+        console.log("updated");
+      } else {
+        console.log(err);
+      }
+      return res.send(ingredient);
+    });
+  });
+});
 
+app.delete('/api/ingredients/:id', function (req, res){
+  return IngredientModel.findById(req.params.id, function (err, ingredient) {
+    return ingredient.remove(function (err) {
+      if (!err) {
+        console.log("removed");
+        return res.send('');
+      } else {
+        console.log(err);
+      }
+    });
+  });
+});
 
 //TODO: make port config driven
 app.listen(3000);
