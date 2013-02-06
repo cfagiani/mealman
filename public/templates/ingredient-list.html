@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+
+      Search: <input ng-model="query">
+       </div>
+    <div class="span10">
+      <!--Body content-->
+
+      <ul class="ingredients">
+        <li ng-repeat="ingredient in ingredients | filter:query ">          
+          <a href="#/ingredients/{{ingredient.id}}">{{ingredient.name}}</a>          
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>

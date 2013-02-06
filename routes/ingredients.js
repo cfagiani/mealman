@@ -12,8 +12,6 @@ app.get('/api/ingredients', function (req, res){
 });
 
 app.post('/api/ingredients', function (req, res){  
-  console.log("POST: ");
-  console.log(req.body);
   var ingredient = new models.IngredientModel({
     name: req.body.name,
     measureType: req.body.measureType        
