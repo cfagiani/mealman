@@ -17,43 +17,79 @@ app.configure(function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 //DB Schema Creation
 //TODO: consider relocating to another file
 var Schema = mongoose.Schema;  
 
-var UserSchema =  new Schema({
-  id: {type: String, required:true},
+var UserSchema =  new Schema({  
   username: {type: String, required:true}       
 });
 
-var IngredientSchema = new Schema({
-  id: {type: String, required:true},
+var IngredientSchema = new Schema({  
   name: {type: String, required:true},  
   measureType: String    
 });
 
-
-var RecipeSchema = new Schema({  
-    id: {type: String, required:true},
+var RecipeSchema = new Schema({      
     title: { type: String, required: true },
     owner: String,  
     notes: String,
-    ingredients: [{ingredientId:String,quantity:Number}]
+    ingredients: [{ingredientId:ObjectId,quantity:Number}]
 });
 
-
-var MealPlanSchema = new Schema({
-    id: {type: String, required:true},
+var MealPlanSchema = new Schema({    
     owner: String,
     recipies: [RecipeSchema],
-    ingredientsOnHand:[{ingredientId:String,quantity:Number}]
+    ingredientsOnHand:[{ingredientId:ObjectId,quantity:Number}]
 });
+
+//Mongoose Model Initialization
+//TODO: uncomment once we have dev db
+/*
+var UserModel = mongoose.Model('User',UserSchema);
+var IngredientModel = mongoose.Model('Ingredient',IngredientSchema);
+var RecipeModel = mongoose.Model('Recipe',RecipeSchema);
+var MealPlanModel = mongoose.Model('MealPlan',MealPlanSchema)
+*/
 
 //API Routes
 app.get('/api/status', function(req, res){
     res.send('Mealman API Is Running');
 });
+
+
+//Ingredients
+app.get('/api/ingredients', function (req, res){
+  return IngredientModel.find(function (err, ingredients) {
+    if (!err) {
+      return res.send(ingredients);
+    } else {
+      return console.log(err);
+    }
+  });
+});
+
+app.post('/api/ingredients', function (req, res){  
+  console.log("POST: ");
+  console.log(req.body);
+  var ingredient = new IngredientModel({
+    name: req.body.name,
+    measureType: req.body.measureType    
+    //TODO: generate ID
+  });
+  product.save(function (err) {
+    if (!err) {
+      return console.log("created");
+    } else {
+      return console.log(err);
+    }
+  });
+  return res.send(ingredient);
+});
+
+
 
 
 //TODO: make port config driven
