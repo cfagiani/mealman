@@ -5,9 +5,6 @@ app = express();
 var path = require('path');
 var application_root = __dirname;
 
-require('./routes');
-require('./tests');
-var models = require('./models');
 
 
 app.configure(function(){
@@ -19,6 +16,10 @@ app.configure(function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
+
+require('./routes');
+require('./tests');
+var models = require('./models');
 
 
 //TODO: make port config driven

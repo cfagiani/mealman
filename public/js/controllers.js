@@ -30,8 +30,7 @@ function IngredientListCtrl($scope, Ingredient) {
 
 function IngredientController($scope, Ingredient){
  
-  $scope.update = function(data){
-    alert('hello '+ data.name);
+  $scope.update = function(data){    
     Ingredient.update(data);
   };
   
