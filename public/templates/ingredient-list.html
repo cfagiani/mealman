@@ -5,15 +5,29 @@
     </div>
 </div>
 <div class="row-fluid">
-    <div class="span3">
+    <div class="span5">
         <!--Body content-->
-        <ul class="ingredients">
+        <ul class="ingredients unstyled">
             <li ng-repeat="ingredient in ingredients | filter:query ">
-                <a href="#/ingredients/{{ingredient.id}}">{{ingredient.name}}</a>
-            </li>
+                <a ng-click="open(ingredient)">{{ingredient.name}}</a>
+            </li>            
         </ul>
     </div>
-    <div class="span9" id="detailPane">
-
-    </div>
+    <div class="span5">
+        <ng-switch on="anyItemOpen()">
+     <div ng-switch-when="true">
+         <div ng-controller="IngredientController">             
+             <form>
+                 <label>Name: </label><input type="text" ng-model="ingredient.name" name="ingredient.name">
+                 <label>Measure Type: </label><select ng-model="ingredient.measureType" name="ingredient.measureType">
+                     <option>ugh</option>
+                     <option>testtype</option>
+                 </select>
+                 <button class="btn" ng-click="update(ingredient)">
+             </form>
+         </div>  
+         <a ng-click="close()">close</a>         
+     </div>
+    </ng-switch>   
+    </div>    
 </div>

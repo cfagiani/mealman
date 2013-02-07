@@ -36,10 +36,10 @@ app.get('/api/ingredients/:id', function (req, res){
   });
 });
 
-app.put('/api/ingredients/:id', function (req, res){
-  return models.IngredientModel.findById(req.params.id, function (err, ingredient) {
-    name: req.body.name;
-    measureType: req.body.measureType;
+app.put('/api/ingredients/:id', function (req, res){  
+  return models.IngredientModel.findById(req.params.id, function (err, ingredient) {    
+    ingredient.name= req.body.name;
+    ingredient.measureType= req.body.measureType;
     return ingredient.save(function (err) {
       if (!err) {
         console.log("updated");
