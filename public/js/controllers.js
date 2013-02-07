@@ -41,17 +41,21 @@ function SourceListController($scope, Source) {
   $scope.open = function(item){
         if ($scope.isOpen(item)){
             $scope.source = undefined;
-        } else {
-            $scope.source = item;
-        }        
+        } else if(item != null) {          
+            $scope.source = item;        
+        }  
     };
     
     $scope.isOpen = function(item){
-        return $scope.source === item;
+        if(item != null ){
+          return $scope.source === item;
+        }else{
+          return false;
+        }
     };
 
      
-    $scope.anyItemOpen = function() {
+    $scope.anyItemOpen = function() {       
         return $scope.source !== undefined;
     };
 
@@ -61,8 +65,12 @@ function SourceListController($scope, Source) {
 }
 
 function SourceController($scope, Source){ 
-  $scope.update = function(data){    
-    Source.update(data);
+  $scope.save = function(data){   
+    if(data._id == null){
+      $scope.sources.push(Source.save(data));
+    }else{
+      Source.update(data);
+    }      
   }; 
 }
 

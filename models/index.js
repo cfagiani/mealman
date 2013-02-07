@@ -25,7 +25,8 @@ var SourceSchema = new Schema({
     addr2: String,
     city: String,
     state: String,
-    phone: String   
+    postalCode: String,
+    phone: String       
 });
 
 var RecipeSchema = new Schema({      

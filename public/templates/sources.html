@@ -10,19 +10,70 @@
         <ul class="sources unstyled">
             <li ng-repeat="source in sources | filter:query ">
                 <a ng-click="open(source)">{{source.name}}</a>
-            </li>            
+            </li>
         </ul>
+        <a class="btn" ng-click="open({})">New Source</a>
     </div>
     <div class="span5">
         <ng-switch on="anyItemOpen()">
-     <div ng-switch-when="true">
-         <div ng-controller="SourceController">             
-             <form>
-                 <label>Name: </label><input type="text" ng-model="source.name" name="source.name">                 
-                 <a class="btn" ng-click="update(source)">Update</a>
-             </form>
-         </div>                   
-     </div>
-    </ng-switch>   
-    </div>    
+            <div ng-switch-when="true">
+                <div ng-controller="SourceController">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <legend>
+                                Source Detail
+                            </legend>
+                            <div class="control-group">
+                                <label class="control-label">Name: </label>
+                                <div class="controls">
+                                    <input type="text" ng-model="source.name" name="source.name" required="true">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Address:</label>
+                                <div class="controls">
+                                    <input type="text" ng-model="source.addr1" name="source.addr1">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Address:</label>
+                                <div class="controls">
+                                    <input type="text" ng-model="source.addr2" name="source.addr2">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">City:</label>
+                                <div class="controls">
+                                    <input type="text" ng-model="source.city" name="source.city">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">State:</label>
+                                <div class="controls">
+                                    <input type="text" ng-model="source.state" name="source.state">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Zip Code:</label>
+                                <div class="controls">
+                                    <input type="text" ng-model="source.postalCode" name="source.postalCode">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Phone:</label>
+                                <div class="controls">
+                                    <input type="text" ng-model="source.phone" name="source.phone">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <a class="btn" ng-click="save(source)">Save</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </ng-switch>
+    </div>
 </div>
