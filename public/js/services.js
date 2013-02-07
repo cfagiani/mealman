@@ -30,8 +30,7 @@ factory('Source', function($resource) {
       method: 'POST'    
     },
     delete: {
-      method: 'DELETE'
-      
+      method: 'DELETE'      
     }
       
   });

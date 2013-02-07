@@ -75,7 +75,7 @@ function SourceController($scope, Source){
   
   $scope.delete = function(data){
     if(data._id != null){
-      Source.delete(data);
+      Source.delete({sourceId:data._id});
       $scope.source = undefined;      
     }else{
       $scope.source = undefined;
