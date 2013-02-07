@@ -72,6 +72,15 @@ function SourceController($scope, Source){
       Source.update(data);
     }      
   }; 
+  
+  $scope.delete = function(data){
+    if(data._id != null){
+      Source.delete(data);
+      $scope.source = undefined;      
+    }else{
+      $scope.source = undefined;
+    }    
+  };
 }
 
 

@@ -7,8 +7,7 @@ factory('Ingredient', function($resource) {
   return $resource('api/ingredients/:ingredientId', {ingredientId: '@_id'}, {
     query : {
       method : 'GET',
-      isArray : true,
-      
+      isArray : true      
     },
     update : {
       method: 'PUT'      
@@ -22,15 +21,19 @@ factory('Source', function($resource) {
   return $resource('api/sources/:sourceId', {sourceId: '@_id'}, {
     query : {
       method : 'GET',
-      isArray : true,
-      
+      isArray : true      
     },
     update : {
       method: 'PUT'      
     },
     create: {
       method: 'POST'    
-    }    
+    },
+    delete: {
+      method: 'DELETE'
+      
+    }
+      
   });
 })
 ; 
