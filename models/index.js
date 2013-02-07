@@ -19,6 +19,15 @@ var IngredientSchema = new Schema({
   measureType: String    
 });
 
+var SourceSchema = new Schema({  
+    name: {type: String, required:true},
+    addr1: String,
+    addr2: String,
+    city: String,
+    state: String,
+    phone: String   
+});
+
 var RecipeSchema = new Schema({      
     title: { type: String, required: true },
     owner: String,  
@@ -36,5 +45,6 @@ var MealPlanSchema = new Schema({
 module.exports.UserModel = mongoose.model('User',UserSchema);
 module.exports.IngredientModel = mongoose.model('Ingredient',IngredientSchema);
 module.exports.RecipeModel = mongoose.model('Recipe',RecipeSchema);
-module.exports.MealPlanModel = mongoose.model('MealPlan',MealPlanSchema)
+module.exports.MealPlanModel = mongoose.model('MealPlan',MealPlanSchema);
+module.exports.SourceModel = mongoose.model('Source',SourceSchema);
 

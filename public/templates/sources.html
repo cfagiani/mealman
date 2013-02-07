@@ -1,0 +1,28 @@
+<div class="row-fluid">
+    <div class="span4">
+        Search:
+        <input ng-model="query">
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span5">
+        <!--Body content-->
+        <ul class="sources unstyled">
+            <li ng-repeat="source in sources | filter:query ">
+                <a ng-click="open(source)">{{source.name}}</a>
+            </li>            
+        </ul>
+    </div>
+    <div class="span5">
+        <ng-switch on="anyItemOpen()">
+     <div ng-switch-when="true">
+         <div ng-controller="SourceController">             
+             <form>
+                 <label>Name: </label><input type="text" ng-model="source.name" name="source.name">                 
+                 <a class="btn" ng-click="update(source)">Update</a>
+             </form>
+         </div>                   
+     </div>
+    </ng-switch>   
+    </div>    
+</div>
