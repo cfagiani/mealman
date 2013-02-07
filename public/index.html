@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     [ng-cloak] {
       display: none;
@@ -42,9 +43,9 @@
   </script>
   <title>MealManager</title>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css">
+  <link rel="stylesheet" href="css/mealman.css">
 </head>
-<body>
-    
+<body>    
      <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -60,16 +61,18 @@
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>                 
-              <li><a href="#/ingredients" id="ingredientsLink">Ingredients</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#/ingredients">Ingredients</a></li>
+              <li><a href="#/sources">Sources</a></li>
+              <li><a href="#/recipes">Recipes</a></li>
+              <li><a href="#/mealplans">Meal Plans</a></li>
+              <li><a href="#about">About</a></li>              
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
  
-    <div ng-view></div>
+    <div ng-view class="container-fluid"></div>
  
 </body>
 </html>
