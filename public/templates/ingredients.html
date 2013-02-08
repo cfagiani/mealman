@@ -12,6 +12,7 @@
                 <a ng-click="open(ingredient)">{{ingredient.name}}</a>
             </li>            
         </ul>
+         <a class="btn" ng-click="open({})">New Ingredient</a>
     </div>
     <div class="span5">
         <ng-switch on="anyItemOpen()">
@@ -22,8 +23,9 @@
                  <label>Measure Type: </label><select ng-model="ingredient.measureType" name="ingredient.measureType">
                      <option>Cups</option>
                      <option>Ounces</option>
+                     <option>Pieces</option>
                  </select>
-                 <a class="btn" ng-click="update(ingredient)">Update</a>
+                 <a class="btn" ng-click="save(ingredient)">Update</a>
              </form>
          </div>                   
      </div>

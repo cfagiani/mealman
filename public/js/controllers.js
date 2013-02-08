@@ -29,8 +29,12 @@ function IngredientListController($scope, Ingredient) {
 }
 
 function IngredientController($scope, Ingredient){ 
-  $scope.update = function(data){    
-    Ingredient.update(data);
+  $scope.save = function(data){    
+    if(data._id == null){
+      $scope.ingredients.push(Ingredient.save(data));
+    }else{
+      Source.update(data);
+    }      
   }; 
 }
 
