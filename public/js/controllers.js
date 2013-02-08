@@ -87,4 +87,35 @@ function SourceController($scope, Source){
   };
 }
 
+function RecipeListController($scope, Recipe) {    
+  $scope.recipes = Recipe.query();     
+}
+
+function RecipeController($scope, Recipe, $routeParams){
+	if($routeParams.recipeId != null){ 
+		$scope.recipe = Recipe.find({recipeId:$routeParams.recipeId, userId:$routeParams.userId});
+	}else{
+		$scope.recipe = {};
+	}
+	
+  $scope.save = function(data){
+  	
+  	   
+    if(data._id == null){
+      Recipe.save(data);
+    }else{
+      Recipe.update(data);
+    }      
+  }; 
+  
+  $scope.delete = function(data){
+    if(data._id != null){
+      Recipe.delete({recipeId:data._id});
+      $scope.recipe = undefined;      
+    }else{
+      $scope.recipe = undefined;
+    }    
+  };
+}
+
 

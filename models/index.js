@@ -31,9 +31,9 @@ var SourceSchema = new Schema({
 
 var RecipeSchema = new Schema({      
     title: { type: String, required: true },
-    owner: String,  
+    owner: ObjectId,  
     notes: String,
-    ingredients: [{ingredientId:ObjectId,quantity:Number}]
+    ingredients: {type:[{ingredientId:ObjectId,quantity:Number}], required: false}
 });
 
 var MealPlanSchema = new Schema({    

@@ -34,5 +34,27 @@ factory('Source', function($resource) {
     }
       
   });
+}).
+factory('Recipe', function($resource) {
+	//TODO: remove hard-coded UserId and use id from cookie once that is set up
+  return $resource('api/recipes/:userId/:recipeId', {recipeId: '@_id', userId:'5115498739dd85582b000005'}, {
+    query : {
+      method : 'GET',
+      isArray : true      
+    },
+    find : {
+    	method : 'GET'    	
+    },
+    update : {
+      method: 'PUT'      
+    },
+    create: {
+      method: 'POST'    
+    },
+    delete: {
+      method: 'DELETE'      
+    }
+      
+  });
 })
 ; 
