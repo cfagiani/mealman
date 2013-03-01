@@ -88,19 +88,41 @@ function SourceController($scope, Source){
 }
 
 function RecipeListController($scope, Recipe) {    
-  $scope.recipes = Recipe.query();     
+  $scope.recipes = Recipe.query();    
+  
+  $scope.open = function(item){
+        if ($scope.isOpen(item)){
+            $scope.recipe = undefined;
+        } else {
+            $scope.recipe = item;
+        }        
+    };
+    
+    $scope.isOpen = function(item){
+		if($scope.recipe != null && item !=null){
+    		return $scope.recipe._id == item._id;
+		}else{
+    		return false;
+    	}
+    };
+     
+    $scope.anyItemOpen = function() {       
+       return $scope.recipe != undefined;
+    };
+
+   $scope.close = function() {
+        $scope.recipe = undefined;
+    };
 }
 
 function RecipeController($scope, Recipe, $routeParams){
-	if($routeParams.recipeId != null){ 
-		$scope.recipe = Recipe.find({recipeId:$routeParams.recipeId, userId:$routeParams.userId});
-	}else{
-		$scope.recipe = {};
+	if($scope.recipe != null && $scope.recipe._id != null){ 
+		$scope.recipe = Recipe.find({recipeId:$scope.recipe._id, userId:$routeParams.userId});
 	}
 	
   $scope.save = function(data){  	  	   
     if(data._id == null){
-      Recipe.save(data);
+      $scope.recipes.push(Recipe.save(data));
     }else{
       Recipe.update(data);
     }       	  
