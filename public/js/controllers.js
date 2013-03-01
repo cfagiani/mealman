@@ -20,7 +20,7 @@ function IngredientListController($scope, Ingredient) {
 
      
     $scope.anyItemOpen = function() {
-        return $scope.ingredient !== undefined;
+        return $scope.ingredient != undefined;
     };
 
   $scope.close = function() {
@@ -33,7 +33,7 @@ function IngredientController($scope, Ingredient){
     if(data._id == null){
       $scope.ingredients.push(Ingredient.save(data));
     }else{
-      Source.update(data);
+      Ingredient.update(data);
     }      
   }; 
 }
@@ -60,7 +60,7 @@ function SourceListController($scope, Source) {
 
      
     $scope.anyItemOpen = function() {       
-        return $scope.source !== undefined;
+        return $scope.source != undefined;
     };
 
   $scope.close = function() {
@@ -77,9 +77,9 @@ function SourceController($scope, Source){
     }      
   }; 
   
-  $scope.delete = function(data){
+  $scope.remove = function(data){
     if(data._id != null){
-      Source.delete({sourceId:data._id});
+      Source.remove({sourceId:data._id});
       $scope.source = undefined;      
     }else{
       $scope.source = undefined;
@@ -98,19 +98,17 @@ function RecipeController($scope, Recipe, $routeParams){
 		$scope.recipe = {};
 	}
 	
-  $scope.save = function(data){
-  	
-  	   
+  $scope.save = function(data){  	  	   
     if(data._id == null){
       Recipe.save(data);
     }else{
       Recipe.update(data);
-    }      
+    }       	  
   }; 
   
-  $scope.delete = function(data){
+  $scope.remove = function(data){
     if(data._id != null){
-      Recipe.delete({recipeId:data._id});
+      Recipe.remove({recipeId:data._id});
       $scope.recipe = undefined;      
     }else{
       $scope.recipe = undefined;

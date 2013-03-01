@@ -29,7 +29,7 @@ factory('Source', function($resource) {
     create: {
       method: 'POST'    
     },
-    delete: {
+    remove: {
       method: 'DELETE'      
     }
       
@@ -51,7 +51,7 @@ factory('Recipe', function($resource) {
     create: {
       method: 'POST'    
     },
-    delete: {
+    remove: {
       method: 'DELETE'      
     }
       
