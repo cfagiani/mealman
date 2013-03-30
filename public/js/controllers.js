@@ -136,6 +136,18 @@ function RecipeController($scope, Recipe, $routeParams){
       $scope.recipe = undefined;
     }    
   };
+
+
+    $scope.addIngredient = function(data){
+        $scope.recipe.ingredients.push($scope.ingredient)
+        $scope.ingredient = undefined;
+    }
+
+    $scope.removeIngredient = function(data){
+        var idx = $scope.recipe.ingredients.indexOf(data);
+        $scope.recipe.ingredients.splice(idx,1);
+    }
+
 }
 
 
