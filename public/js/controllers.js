@@ -148,6 +148,7 @@ function RecipeController($scope, Recipe, $routeParams){
         $scope.recipe.ingredients.splice(idx,1);
     }
 
+
 }
 
 

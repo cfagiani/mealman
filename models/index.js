@@ -16,7 +16,7 @@ var UserSchema =  new Schema({
 
 var IngredientSchema = new Schema({  
   name: {type: String, required:true},  
-  measureType: String    
+  measureType: String
 });
 
 var SourceSchema = new Schema({  
