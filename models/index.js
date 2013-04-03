@@ -29,16 +29,19 @@ var SourceSchema = new Schema({
     phone: String       
 });
 
+
+
 var RecipeSchema = new Schema({      
     title: { type: String, required: true },
     owner: ObjectId,  
     notes: String,
-    ingredients: {type:[{ingredientId:ObjectId,quantity:Number}], required: false}
+    ingredients: {type:[{ingredientId:ObjectId,measureType:String, name:String, quantity:Number}], required: false}
 });
+
 
 var MealPlanSchema = new Schema({    
     owner: String,
-    recipies: [RecipeSchema],
+    recipes: [RecipeSchema],
     ingredientsOnHand:[{ingredientId:ObjectId,quantity:Number}]
 });
 

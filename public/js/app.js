@@ -17,7 +17,13 @@ angular.module('mealmanagerApp', ['mealmanagerServices']).
             link: function postLink(scope, elem, attr){
                 elem.autocomplete({
                     source: attr.autocomplete,
-                    minLength: 2
+                    minLength: 2,
+                    select: function(event, ui){
+                        scope.$eval(attr.modelname)._id =ui.item.value;
+                        scope.$eval(attr.modelname).name =ui.item.label;
+                        scope.$digest();
+                        return false;
+                    }
                 });
             }
         };

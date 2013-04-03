@@ -44,9 +44,8 @@
                                 <label class="control-label">Ingredient Name:</label>
                                 <div class="controls row-fluid">
                                     <input type="hidden" id="ingredientId" ng-model="ingredient._id">
-                                    <input type="text" id="ingredientTypeAhead" ng-model="ingredient.name" autocomplete="/api/ingredients">
-
-                                    </div>
+                                    <input type="text" id="ingredientTypeAhead" ng-model="ingredient.name" autocomplete="/api/ingredients" modelname="ingredient">
+                                </div>
                                 <label class="control-label" for="quantity">Qty:</label>
                                 <div class="controls row-fluid">
 
