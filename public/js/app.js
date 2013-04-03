@@ -19,8 +19,8 @@ angular.module('mealmanagerApp', ['mealmanagerServices']).
                     source: attr.autocomplete,
                     minLength: 2,
                     select: function(event, ui){
-                        scope.$eval(attr.modelname)._id =ui.item.value;
                         scope.$eval(attr.modelname).name =ui.item.label;
+                        scope.selection=ui.item;
                         scope.$digest();
                         return false;
                     }

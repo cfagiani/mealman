@@ -29,8 +29,6 @@ var SourceSchema = new Schema({
     phone: String       
 });
 
-
-
 var RecipeSchema = new Schema({      
     title: { type: String, required: true },
     owner: ObjectId,  

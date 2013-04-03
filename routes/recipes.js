@@ -40,7 +40,7 @@ app.put('/api/recipes/:userId/:id', function (req, res) {
     return models.RecipeModel.findById(req.params.id, function (err, recipe) {
         recipe.title = req.body.title;
         recipe.owner = req.params.userId;
-        //recipe.ingredients = req.body.ingredients;
+
         recipe.ingredients = [];
         if(req.body.ingredients != null){
             req.body.ingredients.forEach(function(item){
@@ -56,6 +56,7 @@ app.put('/api/recipes/:userId/:id', function (req, res) {
             }
             return res.send(recipe);
         });
+
     });
 });
 
