@@ -24,6 +24,12 @@ angular.module('mealmanagerApp', ['mealmanagerServices']).
                         scope.selection=ui.item;
                         scope.$digest();
                         return false;
+                    },
+                    focus: function(event, ui){
+                        scope.$eval(attr.modelname).name =ui.item.label;
+                        scope.selection=ui.item;
+                        scope.$digest();
+                        return false;
                     }
                 });
             }

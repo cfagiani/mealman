@@ -14,7 +14,9 @@ app.get('/api/recipes/:userId', function (req, res) {
 app.post('/api/recipes/:userId', function (req, res) {
     var recipe = new models.RecipeModel({
         title: req.body.title,
-        owner: req.params.userId
+        owner: req.params.userId,
+        notes: req.body.notes,
+        ingredients: req.body.ingredients
     });
     recipe.save(function (err) {
         if (!err) {
@@ -40,13 +42,8 @@ app.put('/api/recipes/:userId/:id', function (req, res) {
     return models.RecipeModel.findById(req.params.id, function (err, recipe) {
         recipe.title = req.body.title;
         recipe.owner = req.params.userId;
-
-        recipe.ingredients = [];
-        if(req.body.ingredients != null){
-            req.body.ingredients.forEach(function(item){
-                recipe.ingredients.push({'ingredientId':item._id,'quantity':item.quantity});
-            });
-        }
+        recipe.notes = req.body.notes;
+        recipe.ingredients = req.body.ingredients;
 
         return recipe.save(function (err) {
             if (!err) {

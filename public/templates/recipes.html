@@ -53,7 +53,7 @@
                                     <a class="btn btn-mini" ng-click="addIngredient(ingredient)" ng-disabled="disableAdd()">Add</a>
                                 </div>
                                 <div class="controls row-fluid">
-                                        <div class="row" ng-repeat="i in recipe.ingredients">{{i.name}} <a ng-click="removeIngredient(i)">Remove</a></div>
+                                        <div class="row" ng-repeat="i in recipe.ingredients">{{i.quantity}} {{i.measureType}} {{i.name}} <a ng-click="removeIngredient(i)">Remove</a></div>
                                 </div>
                             </div>
                             <div class="control-group">

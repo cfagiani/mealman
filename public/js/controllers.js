@@ -124,9 +124,9 @@ function RecipeController($scope, Recipe, $routeParams) {
     $scope.disableAdd = function () {
         if ($scope.selection == null || $scope.selection == undefined) {
             return true;
-        } else if ($scope.ingredient == undefined || $scope.ingredient.qty == undefined || $scope.ingredient.qty == null || $scope.ingredient.qty<=0) {
+        } else if ($scope.ingredient == undefined || $scope.ingredient.qty == undefined || $scope.ingredient.qty == null || $scope.ingredient.qty <= 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -152,7 +152,11 @@ function RecipeController($scope, Recipe, $routeParams) {
 
     $scope.addIngredient = function (data) {
         if (!$scope.disableAdd()) {
-            $scope.recipe.ingredients.push($scope.ingredient)
+            $scope.selection.quantity = $scope.ingredient.qty;
+            if($scope.recipe.ingredients == undefined){
+                $scope.recipe.ingredients = [];
+            }
+            $scope.recipe.ingredients.push($scope.selection);
             $scope.ingredient = undefined;
         }
     }

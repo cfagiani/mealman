@@ -15,7 +15,7 @@ app.get('/api/ingredients', function (req, res) {
             if (!err) {
                 var results = [];
                 ingredients.forEach(function(item){
-                    results.push({'label':item.name,'value':item._id, 'measureType':item.measureType});
+                    results.push({'label':item.name,'value':item._id,'name':item.name,'_id':item._id, 'measureType':item.measureType});
                 });
                 return res.send(results);
             } else {
