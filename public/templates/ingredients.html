@@ -21,10 +21,14 @@
              <form>
                  <label>Name: </label><input type="text" ng-model="ingredient.name" name="ingredient.name">
                  <label>Measure Type: </label><select ng-model="ingredient.measureType" name="ingredient.measureType">
+                     <option>Bunches</option>
                      <option>Cups</option>
                      <option>Ounces</option>
                      <option>Pieces</option>
                  </select>
+                 <label>Preferred Source</label><select ng-model="ingredient.preferredSourceId" name="ingredient.preferredSourceId" ng-options="source._id as source.name for source in sources"></select>
+
+
                  <a class="btn" ng-click="save(ingredient)">Update</a>
              </form>
          </div>                   

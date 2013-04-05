@@ -1,4 +1,6 @@
 var models = require('../models');
+var mongoose = require('mongoose');
+
 
 //Ingredients
 app.get('/api/ingredients', function (req, res) {
@@ -29,7 +31,8 @@ app.get('/api/ingredients', function (req, res) {
 app.post('/api/ingredients', function (req, res) {
     var ingredient = new models.IngredientModel({
         name: req.body.name,
-        measureType: req.body.measureType
+        measureType: req.body.measureType,
+        preferredSourceId: mongoose.Types.ObjectId(req.body.preferredSourceId)
 
     });
     ingredient.save(function (err) {
@@ -56,6 +59,7 @@ app.put('/api/ingredients/:id', function (req, res) {
     return models.IngredientModel.findById(req.params.id, function (err, ingredient) {
         ingredient.name = req.body.name;
         ingredient.measureType = req.body.measureType;
+        ingredient.preferredSourceId = mongoose.Types.ObjectId(req.body.preferredSourceId);
 
         return ingredient.save(function (err) {
             if (!err) {

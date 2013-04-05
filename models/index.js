@@ -8,45 +8,51 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 //DB Schema Creation
 //TODO: consider relocating to another file
 
-var Schema = mongoose.Schema;  
+var Schema = mongoose.Schema;
 
-var UserSchema =  new Schema({  
-  username: {type: String, required:true}       
+var UserSchema = new Schema({
+    username: {type: String, required: true}
 });
 
-var IngredientSchema = new Schema({  
-  name: {type: String, required:true},  
-  measureType: String
-});
+var IngredientSchema = new Schema({
+    name: {type: String, required: true},
+    measureType: String,
+    preferredSourceId: ObjectId
+})
+;
 
-var SourceSchema = new Schema({  
-    name: {type: String, required:true},
+var SourceSchema = new Schema({
+    name: {type: String, required: true},
     addr1: String,
     addr2: String,
     city: String,
     state: String,
     postalCode: String,
-    phone: String       
+    phone: String
 });
 
-var RecipeSchema = new Schema({      
+var RecipeSchema = new Schema({
     title: { type: String, required: true },
-    owner: ObjectId,  
+    owner: ObjectId,
     notes: String,
-    ingredients: {type:[{ingredientId:ObjectId,measureType:String, name:String, quantity:Number}], required: false}
+    ingredients: {type: [
+        {_id: ObjectId, measureType: String, name: String, quantity: Number}
+    ], required: false}
 });
 
 
-var MealPlanSchema = new Schema({    
+var MealPlanSchema = new Schema({
     owner: String,
     recipes: [RecipeSchema],
-    ingredientsOnHand:[{ingredientId:ObjectId,quantity:Number}]
+    ingredientsOnHand: [
+        {_id: ObjectId, quantity: Number}
+    ]
 });
 
 //Mongoose Model Initialization
-module.exports.UserModel = mongoose.model('User',UserSchema);
-module.exports.IngredientModel = mongoose.model('Ingredient',IngredientSchema);
-module.exports.RecipeModel = mongoose.model('Recipe',RecipeSchema);
-module.exports.MealPlanModel = mongoose.model('MealPlan',MealPlanSchema);
-module.exports.SourceModel = mongoose.model('Source',SourceSchema);
+module.exports.UserModel = mongoose.model('User', UserSchema);
+module.exports.IngredientModel = mongoose.model('Ingredient', IngredientSchema);
+module.exports.RecipeModel = mongoose.model('Recipe', RecipeSchema);
+module.exports.MealPlanModel = mongoose.model('MealPlan', MealPlanSchema);
+module.exports.SourceModel = mongoose.model('Source', SourceSchema);
 

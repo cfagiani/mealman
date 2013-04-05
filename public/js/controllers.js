@@ -28,7 +28,9 @@ function IngredientListController($scope, Ingredient) {
     };
 }
 
-function IngredientController($scope, Ingredient) {
+function IngredientController($scope, Ingredient, Source) {
+    $scope.sources = Source.query();
+
     $scope.save = function (data) {
         if (data._id == null) {
             $scope.ingredients.push(Ingredient.save(data));
@@ -36,6 +38,8 @@ function IngredientController($scope, Ingredient) {
             Ingredient.update(data);
         }
     };
+
+
 }
 
 function SourceListController($scope, Source) {
