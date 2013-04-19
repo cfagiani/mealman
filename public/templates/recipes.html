@@ -46,7 +46,7 @@
                                     <input type="hidden" id="ingredientSelection" ng-model="selection">
                                     <input type="text" id="ingredientTypeAhead" ng-model="ingredient.name" autocomplete="/api/ingredients" modelname="ingredient">
                                 </div>
-                                <label class="control-label" for="quantity">Qty:</label>
+                                <label class="control-label" for="quantity">Qty: <span ng-show="selection">({{selection.measureType}})</span></label>
                                 <div class="controls row-fluid">
 
                                     <input type="text" id="quantity" ng-model="ingredient.qty">
