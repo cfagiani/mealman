@@ -9,7 +9,8 @@ angular.module('mealmanagerApp', ['mealmanagerServices']).
       when('/sources', {templateUrl: 'templates/sources.html',   controller: SourceListController}).
       when('/recipes/:userId', {templateUrl: 'templates/recipes.html',   controller: RecipeListController}).
       when('/about', {templateUrl:'templates/about.html'}).
-      when('/mealplans', {templateUrl:'templates/mealplans.html', controller:MealPlanListController}).
+      when('/mealplans/:userId', {templateUrl:'templates/mealplans.html', controller:MealPlanListController}).
+      when('/mealplan/:userId/:mealPlanId', {templateUrl:'templates/mealplan.html', controller:MealPlanController}).
       when('/',{templateUrl:'templates/main.html'}).      
       otherwise({redirectTo: '/'});
 }]).

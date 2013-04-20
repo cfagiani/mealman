@@ -1,6 +1,6 @@
 var models = require('../models');
 
-//Recipes
+//MealPlans
 app.get('/api/mealplans/:userId', function (req, res) {
     return models.MealPlanModel.find({'owner': req.params.userId}, '_id title owner', function (err, recipes) {
         if (!err) {

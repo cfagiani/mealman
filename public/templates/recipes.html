@@ -10,7 +10,6 @@
         <ul class="recipes unstyled">
             <li ng-repeat="recipe in recipes | filter:query ">
                 <a ng-click="open(recipe)">{{recipe.title}}</a>
-                <!--  <a href="#/recipes/{{recipe.owner}}/{{recipe._id}}">{{recipe.title}}</a>--->
             </li>
         </ul>
         <!-- TODO: remove hard coded user ID -->

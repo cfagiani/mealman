@@ -8,8 +8,8 @@
     <div class="span5">
         <!--Body content-->
         <ul class="mealplans unstyled">
-            <li ng-repeat="mealplan in mealplans | filter:query ">
-                <a ng-click="open(recipe)">{{mealplan.title}}</a>
+            <li ng-repeat="mealPlan in mealPlans | filter:query ">
+                <a ng-click="open(mealPlan)">{{mealPlan.title}}</a>
             </li>
         </ul>
         <!-- TODO: remove hard coded user ID -->

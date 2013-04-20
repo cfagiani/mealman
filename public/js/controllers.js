@@ -174,7 +174,7 @@ function RecipeController($scope, Recipe, $routeParams) {
 }
 
 
-function MealPlanListController($scope, MealPlan) {
+function MealPlanListController($scope, $location, $routeParams, MealPlan) {
     $scope.mealPlans = MealPlan.query();
 
     $scope.open = function (item) {
@@ -183,6 +183,11 @@ function MealPlanListController($scope, MealPlan) {
         } else {
             $scope.mealPlan = item;
         }
+        var id = "new";
+        if(item != undefined && item._id != undefined && item._id != null){
+            id = item._id;
+        }
+        $location.path('/mealplan/'+$routeParams.userId+'/'+id);
     };
 
     $scope.isOpen = function (item) {
@@ -200,6 +205,64 @@ function MealPlanListController($scope, MealPlan) {
     $scope.close = function () {
         $scope.mealPlan = undefined;
     };
+
+}
+
+function MealPlanController($scope, MealPlan, $routeParams, $location) {
+
+    if ($scope.mealPlan == undefined || $scope.mealPlan == null) {
+        if($routeParams.mealPlanId != 'new'){
+            $scope.mealPlan = MealPlan.find({mealPlanId: $routeParams.mealPlanId, userId: $routeParams.userId});
+        }
+    }
+
+    $scope.disableAdd = function () {
+        if ($scope.selection == null || $scope.selection == undefined) {
+            return true;
+        } else if ($scope.ingredient == undefined || $scope.ingredient.qty == undefined || $scope.ingredient.qty == null || $scope.ingredient.qty <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    $scope.save = function (data) {
+        if (data._id == null || data._id == 'new') {
+            MealPlan.save(data);
+        } else {
+            MealPlan.update(data);
+        }
+        $location.path('/mealplans/'+$routeParams.userId);
+    };
+
+    $scope.remove = function (data) {
+        if (data._id != null) {
+            MealPlan.remove({mealPlanId: data._id});
+            $scope.mealPlan = undefined;
+        } else {
+            $scope.mealPlan = undefined;
+        }
+    };
+
+
+    $scope.addIngredient = function (data) {
+        if (!$scope.disableAdd()) {
+            $scope.selection.quantity = $scope.ingredient.qty;
+            if ($scope.mealPlan.ingredientsOnHand == undefined) {
+                $scope.mealPlan.ingredientsOnHand = [];
+            }
+            $scope.mealPlan.ingredientsOnHand.push($scope.selection);
+            $scope.ingredient = undefined;
+        }
+    }
+
+    $scope.removeIngredient = function (data) {
+        var idx = $scope.mealPlan.ingredientsOnHand.indexOf(data);
+        $scope.mealPlan.ingredientsOnHand.splice(idx, 1);
+    }
+
+
 }
 
 
