@@ -9,19 +9,18 @@
         <!--Body content-->
         <ul class="recipes unstyled">
             <li ng-repeat="recipe in recipes | filter:query ">
- 					<a ng-click="open(recipe)">{{recipe.title}}</a>
-             <!--  <a href="#/recipes/{{recipe.owner}}/{{recipe._id}}">{{recipe.title}}</a>--->
+                <a ng-click="open(recipe)">{{recipe.title}}</a>
+                <!--  <a href="#/recipes/{{recipe.owner}}/{{recipe._id}}">{{recipe.title}}</a>--->
             </li>
         </ul>
         <!-- TODO: remove hard coded user ID -->
-         <a class="btn" ng-click="open({})">New Recipe</a>
+        <a class="btn" ng-click="open({})">New Recipe</a>
     </div>
-
 
 
     <div class="span5">
         <ng-switch on="anyItemOpen()">
-     <div ng-switch-when="true">
+            <div ng-switch-when="true">
                 <div ng-controller="RecipeController">
                     <form class="form-horizontal">
                         <fieldset>
@@ -30,30 +29,37 @@
                             </legend>
                             <div class="control-group">
                                 <label class="control-label">Title: </label>
+
                                 <div class="controls">
                                     <input type="text" ng-model="recipe.title" name="recipe.title" required="true">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Notes:</label>
+
                                 <div class="controls">
                                     <input type="textarea" ng-model="recipe.notes" name="recipe.notes">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Ingredient Name:</label>
+
                                 <div class="controls row-fluid">
                                     <input type="hidden" id="ingredientSelection" ng-model="selection">
-                                    <input type="text" id="ingredientTypeAhead" ng-model="ingredient.name" autocomplete="/api/ingredients" modelname="ingredient">
+                                    <input type="text" id="ingredientTypeAhead" ng-model="ingredient.name"
+                                           autocomplete="/api/ingredients" modelname="ingredient">
                                 </div>
                                 <label class="control-label" for="quantity">Qty: <span ng-show="selection">({{selection.measureType}})</span></label>
+
                                 <div class="controls row-fluid">
 
                                     <input type="text" id="quantity" ng-model="ingredient.qty">
-                                    <a class="btn btn-mini" ng-click="addIngredient(ingredient)" ng-disabled="disableAdd()">Add</a>
+                                    <a class="btn btn-mini" ng-click="addIngredient(ingredient)"
+                                       ng-disabled="disableAdd()">Add</a>
                                 </div>
                                 <div class="controls row-fluid">
-                                        <div class="row" ng-repeat="i in recipe.ingredients">{{i.quantity}} {{i.measureType}} {{i.name}} <a ng-click="removeIngredient(i)">Remove</a></div>
+                                    <div class="row" ng-repeat="i in recipe.ingredients">{{i.quantity}}
+                                        {{i.measureType}} {{i.name}} <a ng-click="removeIngredient(i)">Remove</a></div>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -65,7 +71,7 @@
                         </fieldset>
                     </form>
                 </div>
-                </div>
-                </ng-switch>
+            </div>
+        </ng-switch>
     </div>
 </div>

@@ -43,6 +43,7 @@ var RecipeSchema = new Schema({
 
 var MealPlanSchema = new Schema({
     owner: String,
+    title: String,
     recipes: [RecipeSchema],
     ingredientsOnHand: [
         {_id: ObjectId, quantity: Number}

@@ -157,7 +157,7 @@ function RecipeController($scope, Recipe, $routeParams) {
     $scope.addIngredient = function (data) {
         if (!$scope.disableAdd()) {
             $scope.selection.quantity = $scope.ingredient.qty;
-            if($scope.recipe.ingredients == undefined){
+            if ($scope.recipe.ingredients == undefined) {
                 $scope.recipe.ingredients = [];
             }
             $scope.recipe.ingredients.push($scope.selection);
@@ -171,6 +171,35 @@ function RecipeController($scope, Recipe, $routeParams) {
     }
 
 
+}
+
+
+function MealPlanListController($scope, MealPlan) {
+    $scope.mealPlans = MealPlan.query();
+
+    $scope.open = function (item) {
+        if ($scope.isOpen(item)) {
+            $scope.mealPlan = undefined;
+        } else {
+            $scope.mealPlan = item;
+        }
+    };
+
+    $scope.isOpen = function (item) {
+        if ($scope.mealPlan != null && item != null) {
+            return $scope.mealPlan._id == item._id;
+        } else {
+            return false;
+        }
+    };
+
+    $scope.anyItemOpen = function () {
+        return $scope.mealPlan != undefined;
+    };
+
+    $scope.close = function () {
+        $scope.mealPlan = undefined;
+    };
 }
 
 
