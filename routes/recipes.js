@@ -2,14 +2,29 @@ var models = require('../models');
 
 //Recipes
 app.get('/api/recipes/:userId', function (req, res) {
-    return models.RecipeModel.find({'owner': req.params.userId}, '_id title owner', function (err, recipes) {
-        if (!err) {
-            return res.send(recipes);
-        } else {
-            return console.log(err);
-        }
-    });
-});
+    if (req.query["term"] == undefined) {
+        return models.RecipeModel.find({'owner': req.params.userId}, '_id title owner', function (err, recipes) {
+            if (!err) {
+                return res.send(recipes);
+            } else {
+                return console.log(err);
+            }
+        });
+    }else {
+        return models.RecipeModel.find({'title':{$regex:req.query['term']+".*",$options:'i'}, 'owner': req.params.userId},function (err, ingredients) {
+            if (!err) {
+                var results = [];
+                ingredients.forEach(function(item){
+                    results.push({'label':item.title,'value':item._id,'name':item.title,'_id':item._id});
+                });
+                return res.send(results);
+            } else {
+                return console.log(err);
+            }
+        });
+    }
+})
+;
 
 app.post('/api/recipes/:userId', function (req, res) {
     var recipe = new models.RecipeModel({
