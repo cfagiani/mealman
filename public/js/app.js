@@ -18,8 +18,12 @@ angular.module('mealmanagerApp', ['mealmanagerServices']).
         return {
             restrict: 'A',
             link: function postLink(scope, elem, attr){
+                var sourceUrl = attr.autocomplete;
+                if(sourceUrl.indexOf("FROMSCOPE-")>=0){
+                    sourceUrl = scope.$eval(sourceUrl.substr(10));
+                }
                 elem.autocomplete({
-                    source: attr.autocomplete,
+                    source: sourceUrl,
                     minLength: 2,
                     select: function(event, ui){
                         scope.$eval(attr.modelname).name =ui.item.label;

@@ -209,6 +209,7 @@ function MealPlanListController($scope, $location, $routeParams, MealPlan) {
 }
 
 function MealPlanController($scope, MealPlan, $routeParams, $location) {
+    $scope.recipeUrl = "/api/recipes/"+$routeParams.userId;
 
     if ($scope.mealPlan == undefined || $scope.mealPlan == null) {
         if($routeParams.mealPlanId != 'new'){

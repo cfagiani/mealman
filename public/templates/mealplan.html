@@ -11,6 +11,14 @@
                 </div>
             </div>
             <div class="control-group">
+                <label class="control-label">Recipe</label>
+                <div class="controls row-fluid">
+                    <input type="hidden" id="recipeSelection" ng-model="selection">
+                    <input type="text" id="recipeTypeAhead" ng-model="recipe.title"
+                           autocomplete="FROMSCOPE-recipeUrl" modelname="recipe">
+                </div>
+            </div>
+            <div class="control-group">
                 <div class="controls">
                     <a class="btn" ng-click="save(mealPlan)">Save</a>
                     <a class="btn btn-danger" ng-click="remove(mealPlan)">Delete</a>
