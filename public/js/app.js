@@ -2,7 +2,7 @@
 
 /* App Module */
 
-angular.module('mealmanagerApp', ['mealmanagerServices']).
+angular.module('mealmanagerApp', ['mealmanagerServices','ngGrid']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/ingredients', {templateUrl: 'templates/ingredients.html',   controller: IngredientListController}).

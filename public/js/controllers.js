@@ -26,6 +26,15 @@ function IngredientListController($scope, Ingredient) {
     $scope.close = function () {
         $scope.ingredient = undefined;
     };
+
+    $scope.gridOptions = {
+        data: 'ingredients'
+        ,columnDefs:[
+            {field:'name', displayName:'Name'},
+            {cellTemplate: '<button class="btn" stop-click ng-click="open(row.entity)">Edit <i class="icon-edit"></i></button>'}
+        ],
+        multiSelect: false
+    }
 }
 
 function IngredientController($scope, Ingredient, Source) {
@@ -70,6 +79,15 @@ function SourceListController($scope, Source) {
     $scope.close = function () {
         $scope.source = undefined;
     };
+
+    $scope.gridOptions = {
+        data: 'sources'
+        ,columnDefs:[
+            {field:'name', displayName:'Name'},
+            {cellTemplate: '<button class="btn" stop-click ng-click="open(row.entity)">Edit <i class="icon-edit"></i></button>'}
+        ],
+        multiSelect: false
+    }
 }
 
 function SourceController($scope, Source) {
@@ -117,6 +135,15 @@ function RecipeListController($scope, Recipe) {
     $scope.close = function () {
         $scope.recipe = undefined;
     };
+
+    $scope.gridOptions = {
+        data: 'recipes'
+        ,columnDefs:[
+            {field:'title', displayName:'Name'},
+            {cellTemplate: '<button class="btn" stop-click ng-click="open(row.entity)">Edit <i class="icon-edit"></i></button>'}
+        ],
+        multiSelect: false
+    }
 }
 
 function RecipeController($scope, Recipe, $routeParams) {
@@ -205,6 +232,15 @@ function MealPlanListController($scope, $location, $routeParams, MealPlan) {
     $scope.close = function () {
         $scope.mealPlan = undefined;
     };
+
+    $scope.gridOptions = {
+        data: 'mealPlans'
+        ,columnDefs:[
+            {field:'title', displayName:'Name'},
+            {cellTemplate: '<button class="btn" stop-click ng-click="open(row.entity)">Edit <i class="icon-edit"></i></button>'}
+        ],
+        multiSelect: false
+    }
 
 }
 
